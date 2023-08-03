@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IRegistration } from 'src/app/core/models/registration.model';
 import { IUser } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ import { IUser } from 'src/app/core/models/user.model';
 export class LoginService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   getCookies(type: string): string {
@@ -71,5 +73,13 @@ export class LoginService {
   getDecodedAccessToken(token: string): any {
     const helper = new JwtHelperService();
     return helper.decodeToken(token);
+  }
+
+  logout(): void {
+    this.setCookie("refresh_token", "");
+    this.setCookie("access_token", "");
+    this.setCookie("user_id", "");
+
+    this.router.navigate(['/login']);
   }
 }

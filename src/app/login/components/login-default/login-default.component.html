@@ -26,7 +26,8 @@
         </div>
         <mat-error *ngIf="isInactive">The user is not active.</mat-error>
         <div fxLayout="row" fxLayoutAlign="center center">
-          <button class="full-width" mat-raised-button color="primary" [disabled]="loginDisabled" (click)="login()">
+          <button class="full-width" mat-raised-button color="primary" [disabled]="loginDisabled"
+            [class.spinner]="loginDisabled" (click)="login()">
             Login
           </button>
           <div flex="flex"></div>

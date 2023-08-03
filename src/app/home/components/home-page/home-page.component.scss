@@ -1,0 +1,64 @@
+:host {
+  h2 {
+    margin: 20px;
+  }
+
+  .container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .card-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .card-container mat-card {
+    margin-bottom: 20px;
+  }
+
+  .user-content-container {
+    padding: 50px 50px 0px 50px;
+  }
+
+  .user-content {
+    border-radius: 30px;
+    padding: 10px;
+    cursor: pointer;
+    background: linear-gradient(#faeceb 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+    transition:
+      0.4s,
+      background-position 0s;
+  }
+
+  .user-content:hover {
+    --p: 100%;
+  }
+
+  .user-content h1 {
+    margin: 0px 50px 0px 50px;
+    width: 70%;
+  }
+
+  .user-navigation {
+    margin-top: 30px;
+    font-size: 32px;
+  }
+}

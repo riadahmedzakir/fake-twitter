@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { first } from 'rxjs/operators';
-import { map as _map, find as _find } from 'lodash';
-
-import { ConfiqService } from './../../../shared/services/confiq.service';
-import { environment } from './../../../../environments/environment';
-import { Navigations } from '../../navgiation';
 import { LoginService } from 'src/app/login/services/login.service';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-root-default',
@@ -15,8 +10,6 @@ import { LoginService } from 'src/app/login/services/login.service';
   styleUrls: ['./root-default.component.scss']
 })
 export class RootDefaultComponent implements OnInit {
-  private navigation = Navigations;
-
   constructor(
     private loginService: LoginService,
     private router: Router
@@ -28,7 +21,7 @@ export class RootDefaultComponent implements OnInit {
 
   setRequiedCookcies(): void {
     this.loginService.setCookie('client_id', "test_123");
-      this.loginService.setCookie('client_secret', "test_123");
+    this.loginService.setCookie('client_secret', "test_123");
   }
 
   ngOnInit(): void {
@@ -40,5 +33,4 @@ export class RootDefaultComponent implements OnInit {
       this.setRequiedCookcies();
     }
   }
-
 }

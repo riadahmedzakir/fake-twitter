@@ -31,6 +31,8 @@ export class LoginDefaultComponent implements OnInit {
   ) { }
 
   login(): void {
+    this.loginDisabled = true;
+
     this.loginService.getToken('password', this.user).pipe(first()).subscribe(res => {
       if (res) {
         const accessToken = res.token;
@@ -40,8 +42,9 @@ export class LoginDefaultComponent implements OnInit {
         this.loginService.setCookie('refresh_token', refreshToken);
 
         const userInfo = this.loginService.getDecodedAccessToken(accessToken);
-        const userRoles = userInfo.id;
-        const isApplicationUser = userRoles ? true : false;
+        const userId = userInfo.id;
+        this.loginService.setCookie('user_id', userId);
+        const isApplicationUser = userId ? true : false;
 
         if (isApplicationUser) {
           this.router.navigate(['/home']);
@@ -49,6 +52,8 @@ export class LoginDefaultComponent implements OnInit {
       } else {
         console.log(res);
       }
+
+      this.loginDisabled = false;
     });
   }
 

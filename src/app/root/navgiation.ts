@@ -1,9 +1,14 @@
 export const Navigations = [
-    {
-        id: 'home',
-        title: 'Home',
-        translate: 'NAVIGATIONS.DASHBOARD',
-        type: 'item',
-        url: '/home'
-    }
+  {
+    id: 'feed',
+    title: 'Feed',
+    type: 'home',
+    url: '/home'
+  },
+  {
+    id: 'explore',
+    title: 'Explore',
+    type: 'search',
+    url: '/home/explore'
+  }
 ];

@@ -1,0 +1,36 @@
+<mat-drawer-container class="container">
+  <mat-drawer class="user-content-container sidenav" #sidenav mode="side" opened fxHide fxShow.gt-md>
+    <div class="user-content" [matMenuTriggerFor]="menu">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <ngx-avatars name="Placeholder Name"></ngx-avatars>
+        <div class="p-l-16">
+          <p class="m-0 text-bold font-size-18">Placeholder Name</p>
+          <p class="m-0 opacity-80-percent">@polaceholder_tag</p>
+        </div>
+      </div>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button class="full-width" mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+    <mat-nav-list class="user-navigation full-width">
+      <mat-list-item *ngFor="let item of navigation;">
+        <a fxLayoutAlign="start center" routerLink="{{item.url}}" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}" matLine>
+          <mat-icon color="accent" mat-list-icon>{{item.type}}</mat-icon>
+          <span class="p-l-16 primary-text-color">
+            {{ item.title }}
+          </span>
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

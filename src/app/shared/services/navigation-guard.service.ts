@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 
 import { LoginService } from 'src/app/login/services/login.service';
 
@@ -48,7 +47,22 @@ export class NavigationGuard implements CanActivate {
         //     }
         //   }
         // });
-        observer.next(true);
+
+        const userInfo = this.loginService.getDecodedAccessToken(refreshToken);
+        const currentDate = new Date()
+        const expiry = new Date(userInfo.exp * 1000);
+        const isApplicationUser = expiry >= currentDate;
+
+        if (isApplicationUser && redirectUrl !== '/login') {
+          observer.next(true);
+        } else if (!isApplicationUser) {
+          this.loginService.setCookie('refresh_token', "");
+          this.loginService.setCookie('access_token', "");
+          this.loginService.setCookie('user_id', "");
+
+          this.router.navigate(['/login']);
+          observer.next(false);
+        }
       } else {
         if (redirectUrl === '/login') {
           observer.next(true);
