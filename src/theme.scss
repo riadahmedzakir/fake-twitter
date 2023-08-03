@@ -1,0 +1,76 @@
+@import "@angular/material/theming";
+@include mat-core();
+
+$primary-main: #05aa63;
+$primary-light: #07f48e;
+$primary-dark: #036038;
+$primary-contrast-main: #012f1b;
+$primary-contrast-light: #ffffff;
+$primary-contrast-dark: #000000;
+
+$accent-main: #f7931e;
+$accent-light: #ffc453;
+$accent-dark: #be6500;
+$accent-contrast-main: #ffffff;
+$accent-contrast-light: #ffffff;
+$accent-contrast-dark: #ffffff;
+
+$warn-main: #b54107;
+$warn-light: #f2c3ac;
+$warn-dark: #3b1807;
+$warn-contrast-main: #ffffff;
+$warn-contrast-light: #ffffff;
+$warn-contrast-dark: #ffffff;
+
+$primary: (
+  Main: $primary-main,
+  Light: $primary-light,
+  Dark: $primary-dark,
+  contrast: (
+    Main: $primary-contrast-main,
+    Light: $primary-contrast-light,
+    Dark: $primary-contrast-dark
+  )
+);
+
+$accent: (
+  Main: $accent-main,
+  Light: $accent-light,
+  Dark: $accent-dark,
+  contrast: (
+    Main: $accent-contrast-main,
+    Light: $accent-contrast-light,
+    Dark: $accent-contrast-dark
+  )
+);
+
+$warn: (
+  Main: $warn-main,
+  Light: $warn-light,
+  Dark: $warn-dark,
+  contrast: (
+    Main: $warn-contrast-main,
+    Light: $warn-contrast-light,
+    Dark: $warn-contrast-dark
+  )
+);
+
+$custom-theme-primary: mat-palette($primary, Main, Light, Dark);
+$custom-theme-accent: mat-palette($accent, Main, Light, Dark);
+$custom-theme-warn: mat-palette($warn, Main, Light, Dark);
+
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@mixin custom-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+}
+
+.header {
+  font-weight: 400;
+  background: linear-gradient(to right, mat-color($primary, Light), mat-color($primary, Main)) !important;
+  color: #fff;
+}
+
+@include angular-material-theme($custom-theme);
