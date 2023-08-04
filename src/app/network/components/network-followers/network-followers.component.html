@@ -1,0 +1,29 @@
+<cdk-virtual-scroll-viewport [itemSize]="30" class="virtualizer-viewport" (scrolledIndexChange)="scrollhandler($event)">
+  <div class="explore-items" *cdkVirtualFor="let item of followers">
+
+    <mat-card>
+      <mat-card-header>
+        <div class="full-width">
+          <h1 class="m-b-0 text-bold">{{item.username}}</h1>
+          <div class="full-width m-b-16" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="m-b-0 font-size-16 opacity-80">@placeholder_tag_{{item.id}}</p>
+            <p class="m-b-0">
+              <span class="text-bold">Joined</span> : {{item.join_date}}
+            </p>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p class="m-t-16">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+
+</cdk-virtual-scroll-viewport>

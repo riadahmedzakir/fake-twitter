@@ -38,8 +38,6 @@ export class ExploreUserComponent implements OnInit {
   }
 
   scrollhandler(event: any): void {
-    console.log(event);
-
     if (this.theEnd) { return; }
     if (event === this.users.length - 1) {
       this.pageNumber += 1;

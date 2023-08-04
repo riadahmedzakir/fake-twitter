@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { first } from 'rxjs/operators';
 
+import { ILogin } from 'src/app/core/models/login.model';
 import { LoginService } from '../../services/login.service';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ConfiqService } from './../../../shared/services/confiq.service';
-import { ILogin } from 'src/app/core/models/login.model';
 
 @Component({
   selector: 'app-login-default',
   templateUrl: './login-default.component.html',
   styleUrls: ['./login-default.component.scss']
 })
-export class LoginDefaultComponent implements OnInit {
+export class LoginDefaultComponent {
   patterns = this.confiqService.getPatternConfig();
   loginDisabled = false;
   isInactive: boolean = false;
@@ -58,13 +58,9 @@ export class LoginDefaultComponent implements OnInit {
   }
 
   openRegistrationModal(): void {
-    const dialogRef = this.dialog.open(RegistrationComponent, {
+    this.dialog.open(RegistrationComponent, {
       width: '35vw',
       data: {},
     });
-  }
-
-  ngOnInit(): void {
-
   }
 }

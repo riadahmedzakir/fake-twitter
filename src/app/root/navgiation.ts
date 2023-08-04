@@ -10,5 +10,11 @@ export const Navigations = [
     title: 'Explore',
     type: 'search',
     url: '/home/explore'
+  },
+  {
+    id: 'network',
+    title: 'Network',
+    type: 'group',
+    url: '/home/network'
   }
 ];

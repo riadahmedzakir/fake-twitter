@@ -6,8 +6,17 @@ export interface IUser {
   username: string;
 }
 
-
 export interface IUserApiResponse {
   count: number;
   users: IUser[];
+}
+
+export interface IFollowingsApiResponse {
+  count: number;
+  followings: IUser[];
+}
+
+export interface IFollowersApiResponse {
+  count: number;
+  followers: IUser[];
 }

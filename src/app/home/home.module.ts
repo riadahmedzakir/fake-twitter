@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'explore',
         component: ExploreUserComponent
+      },
+      {
+        path: 'network',
+        loadChildren: () => import('../network/network.module').then(m => m.NetworkModule),
       }
     ]
   }

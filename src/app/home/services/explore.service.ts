@@ -14,7 +14,7 @@ export class ExploreService {
   ) { }
 
   getExlporableUsers(page: number = 1, size: number = 10): Observable<IUserApiResponse> {
-    return this.http.get<any>(environment.ApiBaseUrl + `/users?page=${page}&size=${size}`, {});
+    return this.http.get<IUserApiResponse>(environment.ApiBaseUrl + `/users?page=${page}&size=${size}`, {});
   }
 
   followUser(userId: number): Observable<any> {
