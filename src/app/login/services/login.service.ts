@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, first } from 'rxjs';
-import { map as _map, find as _find } from 'lodash';
-import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { IRegistration } from 'src/app/core/models/registration.model';
-import { IUser } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { find as _find, map as _map } from 'lodash';
+import { Observable, first } from 'rxjs';
+import { ILogin } from 'src/app/core/models/login.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +39,7 @@ export class LoginService {
     return this.http.get<any>(environment.ApiBaseUrl + '/GetIdentity', {});
   }
 
-  getToken(granttype: string, user?: IUser): Observable<any> {
+  getToken(granttype: string, user?: ILogin): Observable<any> {
     return new Observable(observer => {
       switch (granttype) {
         case 'refresh_token':
@@ -79,6 +78,8 @@ export class LoginService {
     this.setCookie("refresh_token", "");
     this.setCookie("access_token", "");
     this.setCookie("user_id", "");
+
+    localStorage.setItem('access_token', "");
 
     this.router.navigate(['/login']);
   }

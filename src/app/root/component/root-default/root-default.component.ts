@@ -13,11 +13,7 @@ export class RootDefaultComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router
-  ) {
-    this.router.events.subscribe((val) => {
-      console.log(val);
-    });
-  }
+  ) { }
 
   setRequiedCookcies(): void {
     this.loginService.setCookie('client_id', "test_123");

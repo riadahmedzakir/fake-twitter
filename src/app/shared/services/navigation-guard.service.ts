@@ -60,6 +60,8 @@ export class NavigationGuard implements CanActivate {
           this.loginService.setCookie('access_token', "");
           this.loginService.setCookie('user_id', "");
 
+          localStorage.setItem('access_token', "");
+
           this.router.navigate(['/login']);
           observer.next(false);
         }

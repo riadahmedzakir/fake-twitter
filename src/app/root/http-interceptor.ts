@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-    HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
+  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -9,22 +9,15 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
-    intercept(req: HttpRequest<any>, next: HttpHandler):
-        Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler):
+    Observable<HttpEvent<any>> {
 
+    const token = localStorage.getItem('access_token');
+    req = req.clone({
+      withCredentials: false,
+      headers: req.headers.set('X-Jwt-Token', `Bearer ${token}`)
+    });
 
-        if (req.url.indexOf('anonymousToken') > -1) {
-            req = req.clone({
-                withCredentials: false
-            });
-        } else {
-            const token = localStorage.getItem('anonyomousToken');
-            req = req.clone({
-                withCredentials: false,
-                headers: req.headers.set('Authorization', `bearer ${token}`)
-            });
-        }
-
-        return next.handle(req);
-    }
+    return next.handle(req);
+  }
 }

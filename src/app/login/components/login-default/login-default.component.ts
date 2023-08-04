@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 import { LoginService } from '../../services/login.service';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ConfiqService } from './../../../shared/services/confiq.service';
-import { IUser } from 'src/app/core/models/user.model';
+import { ILogin } from 'src/app/core/models/login.model';
 
 @Component({
   selector: 'app-login-default',
@@ -18,7 +18,7 @@ export class LoginDefaultComponent implements OnInit {
   patterns = this.confiqService.getPatternConfig();
   loginDisabled = false;
   isInactive: boolean = false;
-  user: IUser = {
+  user: ILogin = {
     email: '',
     password: ''
   }
@@ -41,6 +41,8 @@ export class LoginDefaultComponent implements OnInit {
         this.loginService.setCookie('access_token', accessToken);
         this.loginService.setCookie('refresh_token', refreshToken);
 
+        localStorage.setItem('access_token', accessToken);
+
         const userInfo = this.loginService.getDecodedAccessToken(accessToken);
         const userId = userInfo.id;
         this.loginService.setCookie('user_id', userId);
@@ -49,8 +51,6 @@ export class LoginDefaultComponent implements OnInit {
         if (isApplicationUser) {
           this.router.navigate(['/home']);
         }
-      } else {
-        console.log(res);
       }
 
       this.loginDisabled = false;
@@ -61,10 +61,6 @@ export class LoginDefaultComponent implements OnInit {
     const dialogRef = this.dialog.open(RegistrationComponent, {
       width: '35vw',
       data: {},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

@@ -7,6 +7,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { AvatarModule } from 'ngx-avatars';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ExploreUserComponent } from './components/explore-user/explore-user.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const routes: Routes = [
   {
@@ -36,6 +38,7 @@ const routes: Routes = [
     MaterialModule,
     FlexLayoutModule,
     AvatarModule,
+    ScrollingModule,
     RouterModule.forChild(routes),
   ]
 })
