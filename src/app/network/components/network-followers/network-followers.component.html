@@ -8,7 +8,7 @@
           <div class="full-width m-b-16" fxLayout="row" fxLayoutAlign="space-between center">
             <p class="m-b-0 font-size-16 opacity-80">@placeholder_tag_{{item.id}}</p>
             <p class="m-b-0">
-              <span class="text-bold">Joined</span> : {{item.join_date}}
+              <span class="text-bold">Joined</span> : {{item.join_date | date}}
             </p>
           </div>
         </div>
@@ -21,6 +21,9 @@
           consequat.
         </p>
       </mat-card-content>
+      <mat-card-actions fxLayoutAlign="end center">
+        <button mat-button color="accent" (click)="viewUser(item)">View</button>
+      </mat-card-actions>
     </mat-card>
 
   </div>

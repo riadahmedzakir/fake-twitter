@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 import { IUser } from 'src/app/core/models/user.model';
 import { NetworkService } from '../../services/network.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-network-following',
@@ -16,7 +17,8 @@ export class NetworkFollowingComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private router: Router
   ) { }
 
   scrollhandler(event: any): void {
@@ -48,6 +50,12 @@ export class NetworkFollowingComponent implements OnInit {
       this.followings = [];
       this.getFollowings(this.pageNumber, 30);
     });
+  }
+
+  viewUser(user: IUser): void {
+    localStorage.setItem("current_visited_user", JSON.stringify(user));
+
+    this.router.navigate([`home/user/${user.id}`]);
   }
 
   ngOnInit(): void {

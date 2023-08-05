@@ -3,6 +3,7 @@ import { NetworkService } from '../../services/network.service';
 import { first } from 'rxjs';
 import { LoginService } from 'src/app/login/services/login.service';
 import { IUser } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-network-followers',
@@ -17,7 +18,8 @@ export class NetworkFollowersComponent implements OnInit {
 
   constructor(
     private networkService: NetworkService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   scrollhandler(event: any): void {
@@ -31,7 +33,7 @@ export class NetworkFollowersComponent implements OnInit {
   getFollowers(page: number, size: number): void {
     const userString = this.loginService.getCookies('user_id');
     const userId = parseInt(userString);
-    this.networkService.getFollowers(userId).pipe(first()).subscribe(res => {
+    this.networkService.getFollowers(page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.followers = [...this.followers, ...res.followers];
         this.currentUsers += res.count;
@@ -39,6 +41,12 @@ export class NetworkFollowersComponent implements OnInit {
         this.theEnd = true;
       }
     });
+  }
+
+  viewUser(user: IUser): void {
+    localStorage.setItem("current_visited_user", JSON.stringify(user));
+
+    this.router.navigate([`home/user/${user.id}`]);
   }
 
   ngOnInit(): void {

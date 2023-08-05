@@ -6,15 +6,15 @@ export const Navigations = [
     url: '/home'
   },
   {
+    id: 'network',
+    title: 'My Network',
+    type: 'group',
+    url: '/home/network'
+  },
+  {
     id: 'explore',
     title: 'Explore',
     type: 'search',
     url: '/home/explore'
   },
-  {
-    id: 'network',
-    title: 'Network',
-    type: 'group',
-    url: '/home/network'
-  }
 ];

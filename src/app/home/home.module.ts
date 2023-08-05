@@ -12,6 +12,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { ViewUserFollowersComponent } from './components/view-user-followers/view-user-followers.component';
 import { ViewUserFollowingsComponent } from './components/view-user-followings/view-user-followings.component';
+import { ViewUserTweetsComponent } from './components/view-user-tweets/view-user-tweets.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
     ExploreUserComponent,
     ViewUserComponent,
     ViewUserFollowersComponent,
-    ViewUserFollowingsComponent
+    ViewUserFollowingsComponent,
+    ViewUserTweetsComponent
   ],
   imports: [
     CommonModule,
