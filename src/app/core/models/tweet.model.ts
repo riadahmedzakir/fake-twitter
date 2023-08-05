@@ -7,6 +7,10 @@ export interface ITweet {
   user: IUser;
 }
 
+export interface IMakeTweetApiResponse {
+  message: string;
+  tweet: ITweet;
+}
 export interface ITweetApiResponse {
   count: number;
   tweets: ITweet[];

@@ -1,0 +1,19 @@
+<div class="m-20">
+  <form name="tweetForm">
+    <mat-form-field class="full-width">
+      <mat-label>What is happening?</mat-label>
+      <input matInput type="text" [(ngModel)]="tweet" #maketweet="ngModel" name="maketweet" maxlength="160">
+      <mat-hint align="end">{{tweet.length}} / 160</mat-hint>
+      <button *ngIf="tweet" matSuffix mat-icon-button aria-label="Clear" (click)="tweet=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="m-t-16" fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button color="primary" [disabled]="tweet=='' || isLoading" [class.spinner]="isLoading"
+        (click)="makeTweet()">
+        Tweet
+      </button>
+    </div>
+  </form>
+</div>

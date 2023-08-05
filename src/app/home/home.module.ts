@@ -14,6 +14,8 @@ import { ViewUserFollowersComponent } from './components/view-user-followers/vie
 import { ViewUserFollowingsComponent } from './components/view-user-followings/view-user-followings.component';
 import { ViewUserTweetsComponent } from './components/view-user-tweets/view-user-tweets.component';
 import { MyTweetsComponent } from './components/my-tweets/my-tweets.component';
+import { MakeTweetComponent } from './components/make-tweet/make-tweet.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 const routes: Routes = [
   {
@@ -53,7 +55,9 @@ const routes: Routes = [
     ViewUserFollowersComponent,
     ViewUserFollowingsComponent,
     ViewUserTweetsComponent,
-    MyTweetsComponent
+    MyTweetsComponent,
+    MakeTweetComponent,
+    TimelineComponent
   ],
   imports: [
     CommonModule,
