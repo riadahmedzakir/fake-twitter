@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ExploreUserComponent } from './components/explore-user/explore-user.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FormsModule, NgModel } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -39,11 +40,13 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule,
     FlexLayoutModule,
     AvatarModule,
     ScrollingModule,
     RouterModule.forChild(routes),
-  ]
+  ],
+  providers: [NgModel]
 })
 export class HomeModule { }

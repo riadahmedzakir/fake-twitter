@@ -1,4 +1,14 @@
-<cdk-virtual-scroll-viewport [itemSize]="30" class="virtualizer-viewport" (scrolledIndexChange)="scrollhandler($event)">
+<div class="search__container">
+  <input class="search__input" matInput type="text" [(ngModel)]="search" #email="ngModel" name="search"
+    (ngModelChange)="onModelChangeSubject.next($event)" placeholder="Search for user by username">
+</div>
+
+<div *ngIf="isLoading" class="virtualizer-viewport" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport"
+  (scrolledIndexChange)="scrollhandler($event)">
   <div class="explore-items" *cdkVirtualFor="let item of users">
 
     <mat-card>

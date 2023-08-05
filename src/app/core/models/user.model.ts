@@ -11,6 +11,11 @@ export interface IUserApiResponse {
   users: IUser[];
 }
 
+export interface IUserSearchApiResponse {
+  count: number;
+  search_results: IUser[];
+}
+
 export interface IFollowingsApiResponse {
   count: number;
   followings: IUser[];
