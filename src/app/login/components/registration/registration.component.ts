@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IRegistration } from 'src/app/core/models/registration.model';
-import { RegisterService } from '../../services/register.service';
 import { first } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { IRegistration } from 'src/app/core/models/registration.model';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-registration',
@@ -21,16 +21,10 @@ export class RegistrationComponent {
   constructor(
     public dialogRef: MatDialogRef<RegistrationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IRegistration,
-    private snackBar: MatSnackBar,
+    private snackbarService: SnackbarService,
     private registerService: RegisterService
   ) {
     dialogRef.disableClose = true;
-  }
-
-  openSnackBar(message: string) {
-    this.snackBar.open(message, undefined, {
-      duration: 1000
-    });
   }
 
   register(): void {
@@ -38,11 +32,11 @@ export class RegistrationComponent {
     this.registerService.register(this.user).pipe(first()).subscribe(res => {
       this.registerDisabled = false;
       if (res.error) {
-        this.openSnackBar(res.error);
+        this.snackbarService.openSnackBar(res.error);
         return;
       }
 
-      this.openSnackBar(res.message);
+      this.snackbarService.openSnackBar(res.message);
       this.dialogRef.close();
     });
   }

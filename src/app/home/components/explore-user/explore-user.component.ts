@@ -1,10 +1,10 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, Subscription, debounceTime, distinctUntilChanged, first, skip } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject, debounceTime, first } from 'rxjs';
 import { IUser } from 'src/app/core/models/user.model';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { ExploreService } from '../../services/explore.service';
-import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-explore-user',
@@ -26,8 +26,8 @@ export class ExploreUserComponent implements OnInit {
 
   constructor(
     private exploreService: ExploreService,
-    private snackBar: MatSnackBar,
-    private ngModel: NgModel
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   getUsers(page: number, size: number): void {
@@ -46,6 +46,12 @@ export class ExploreUserComponent implements OnInit {
       });
   }
 
+  searchUsers(userName: string): void {
+    this.exploreService.searchUser(userName).pipe(first()).subscribe(res => {
+      this.users = res.search_results;
+    });
+  }
+
   scrollhandler(event: any): void {
     if (this.theEnd) { return; }
     if (this.search) { return; }
@@ -56,22 +62,16 @@ export class ExploreUserComponent implements OnInit {
     }
   }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message, undefined, {
-      duration: 3000
-    });
-  }
-
   follow(userId: number): void {
     this.exploreService.followUser(userId).pipe(first()).subscribe(res => {
-      this.openSnackBar(res.resp);
+      this.snackbarService.openSnackBar(res.resp);
     });
   }
 
-  searchUsers(userName: string): void {
-    this.exploreService.searchUser(userName).pipe(first()).subscribe(res => {
-      this.users = res.search_results;
-    });
+  viewUser(user: IUser): void {
+    localStorage.setItem("current_visited_user", JSON.stringify(user));
+
+    this.router.navigate([`home/user/${user.id}`]);
   }
 
   ngOnInit(): void {

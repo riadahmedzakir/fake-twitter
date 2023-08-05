@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { ILogin } from 'src/app/core/models/login.model';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { LoginService } from '../../services/login.service';
 import { RegistrationComponent } from '../registration/registration.component';
 import { ConfiqService } from './../../../shared/services/confiq.service';
@@ -27,13 +28,22 @@ export class LoginDefaultComponent {
     private confiqService: ConfiqService,
     private loginService: LoginService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbarService: SnackbarService
   ) { }
+
+
 
   login(): void {
     this.loginDisabled = true;
 
     this.loginService.getToken('password', this.user).pipe(first()).subscribe(res => {
+      if (res.error) {
+        this.snackbarService.openSnackBar(res.error);
+        this.loginDisabled = false;
+        return;
+      }
+
       if (res) {
         const accessToken = res.token;
         const refreshToken = res.token;

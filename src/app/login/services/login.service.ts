@@ -60,7 +60,7 @@ export class LoginService {
           this.http.post<any>(environment.ApiBaseUrl + '/login', user).pipe(first()).subscribe(res => {
             observer.next(res);
           }, error => {
-            observer.next(false);
+            observer.next(error.error);
           });
           break;
         default:

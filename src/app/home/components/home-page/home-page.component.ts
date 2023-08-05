@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Navigations } from 'src/app/root/navgiation';
 
@@ -7,7 +7,7 @@ import { Navigations } from 'src/app/root/navgiation';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent{
   navigation = Navigations;
 
   constructor(
@@ -16,8 +16,5 @@ export class HomePageComponent implements OnInit {
 
   logout(): void {
     this.loginService.logout();
-  }
-
-  ngOnInit(): void {
   }
 }

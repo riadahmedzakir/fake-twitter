@@ -1,0 +1,27 @@
+<div class="view-user-container">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <ngx-avatars [name]="user.username" size="80"></ngx-avatars>
+      <div class="p-l-16">
+        <p class="m-0 text-bold font-size-18">Placeholder Name</p>
+        <p class="m-0 opacity-80-percent">@polaceholder_tag</p>
+      </div>
+    </div>
+
+    <button mat-button color="primary" (click)="follow()">Follow</button>
+  </div>
+</div>
+
+<mat-tab-group color="accent">
+  <mat-tab label="Tweets">
+    Tweets
+  </mat-tab>
+
+  <mat-tab label="Following">
+    <app-view-user-followings></app-view-user-followings>
+  </mat-tab>
+
+  <mat-tab label="Followers">
+    <app-view-user-followers></app-view-user-followers>
+  </mat-tab>
+</mat-tab-group>

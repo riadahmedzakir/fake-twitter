@@ -2,8 +2,7 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport"
-  (scrolledIndexChange)="scrollhandler($event)">
+<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport" (scrolledIndexChange)="scrollhandler($event)">
   <div class="explore-items" *cdkVirtualFor="let item of followings">
 
     <mat-card>
@@ -26,12 +25,7 @@
           consequat.
         </p>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="end center">
-        <button mat-button color="accent" (click)="unfollow(item.id)">Unfollow</button>
-      </mat-card-actions>
     </mat-card>
 
   </div>
-
-
 </cdk-virtual-scroll-viewport>

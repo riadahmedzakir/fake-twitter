@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NetworkService } from '../../services/network.service';
 import { first } from 'rxjs';
-import { LoginService } from 'src/app/login/services/login.service';
 import { IUser } from 'src/app/core/models/user.model';
+import { NetworkService } from '../../services/network.service';
 
 @Component({
   selector: 'app-network-following',
@@ -13,14 +12,12 @@ export class NetworkFollowingComponent implements OnInit {
   followings: IUser[] = [];
   currentUsers: number = 0;
   pageNumber: number = 1;
-  theEnd: boolean = false
+  theEnd: boolean = false;
+  isLoading: boolean = true;
 
   constructor(
-    private networkService: NetworkService,
-    private loginService: LoginService
-  ) {
-
-  }
+    private networkService: NetworkService
+  ) { }
 
   scrollhandler(event: any): void {
     if (this.theEnd) { return; }
@@ -31,6 +28,7 @@ export class NetworkFollowingComponent implements OnInit {
   }
 
   getFollowings(page: number, size: number): void {
+    this.isLoading = true;
     this.networkService.getFollowings(page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.followings = [...this.followings, ...res.followings];
@@ -38,6 +36,8 @@ export class NetworkFollowingComponent implements OnInit {
       } else {
         this.theEnd = true;
       }
+
+      this.isLoading = false;
     });
   }
 
