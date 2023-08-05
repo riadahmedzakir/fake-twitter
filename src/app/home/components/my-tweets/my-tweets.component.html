@@ -1,5 +1,61 @@
 <div class="my-tweet-container">
-  <div class="p-20">
+  <div class="m-0 p-0">
     <h1 class="font-size-34"> My tweet history</h1>
   </div>
 </div>
+
+<div *ngIf="isLoading" class="virtualizer-viewport" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport"
+  (scrolledIndexChange)="scrollhandler($event)">
+  <div class="explore-items" *cdkVirtualFor="let item of tweets">
+    <div class="full-width timeline-header" [style]="{ backgroundColor: item.color }"></div>
+    <mat-card>
+      <mat-card-header>
+        <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
+          <p class="m-b-0">
+            <span class="text-bold">Posted on: </span> {{item.published | date}}
+          </p>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider class="m-t-16"></mat-divider>
+        <p class="m-t-16 font-size-20">
+          {{item.content}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <p class="m-0">33</p>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>settings_backup_restore</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>chat</mat-icon>
+        </button>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button>
+            <mat-icon>chat</mat-icon>
+          </button>
+          <p class="m-0">25</p>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>send</mat-icon>
+        </button>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button>
+            <mat-icon>show_chart</mat-icon>
+          </button>
+          <p class="m-0">1156</p>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <div class="full-width timeline-footer" [style]="{ backgroundColor: item.color }"></div>
+  </div>
+</cdk-virtual-scroll-viewport>

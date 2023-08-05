@@ -1,5 +1,23 @@
-:host{
-  .my-tweet-container{
-    margin: 40px;
+:host {
+  .my-tweet-container {
+    margin: 40px 20px 20px 20px;
+  }
+
+  .virtualizer-viewport {
+    height: 80vh;
+  }
+
+  .explore-items {
+    margin: 20px;
+  }
+
+  .timeline-header {
+    height: 10px;
+    background: linear-gradient(to right, rgba(99, 13, 13, 0), white);
+  }
+
+  .timeline-footer {
+    height: 1px;
+    background: linear-gradient(to right, rgba(99, 13, 13, 0), white);
   }
 }

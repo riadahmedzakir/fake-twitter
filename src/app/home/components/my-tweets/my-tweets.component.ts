@@ -17,7 +17,7 @@ export class MyTweetsComponent implements OnInit {
 
   constructor(
     private tweetService: TweetService
-  ){}
+  ) { }
 
   scrollhandler(event: any): void {
     if (this.theEnd) { return; }
@@ -28,7 +28,6 @@ export class MyTweetsComponent implements OnInit {
   }
 
   getTweets(page: number, size: number): void {
-    this.isLoading = true;
     this.tweetService.getTweet(page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.tweets = [...this.tweets, ...res.my_tweets];

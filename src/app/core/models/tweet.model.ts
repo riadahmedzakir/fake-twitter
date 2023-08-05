@@ -11,6 +11,10 @@ export interface ITimelineTweet extends ITweet {
   color: string;
 }
 
+export interface IMyTweet extends ITweet {
+  color: string;
+}
+
 export interface IMakeTweetApiResponse {
   message: string;
   tweet: ITweet;
@@ -32,4 +36,9 @@ export interface ITimelineApiResponse {
 export interface ITimelineView {
   count: number;
   timeline: ITimelineTweet[];
+}
+
+export interface IMyTweetView {
+  count: number;
+  my_tweets: IMyTweet[];
 }
