@@ -17,4 +17,10 @@ export const Navigations = [
     type: 'search',
     url: '/home/explore'
   },
+  {
+    id: 'my-tweet',
+    title: 'My Tweets',
+    type: 'flutter_dash',
+    url: '/home/tweets'
+  }
 ];

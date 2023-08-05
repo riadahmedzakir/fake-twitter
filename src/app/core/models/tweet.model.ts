@@ -11,3 +11,8 @@ export interface ITweetApiResponse {
   count: number;
   tweets: ITweet[];
 }
+
+export interface IMyTweetApiResponse {
+  count: number;
+  my_tweets: ITweet[];
+}

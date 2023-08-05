@@ -13,6 +13,7 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
 import { ViewUserFollowersComponent } from './components/view-user-followers/view-user-followers.component';
 import { ViewUserFollowingsComponent } from './components/view-user-followings/view-user-followings.component';
 import { ViewUserTweetsComponent } from './components/view-user-tweets/view-user-tweets.component';
+import { MyTweetsComponent } from './components/my-tweets/my-tweets.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'user/:id',
         component: ViewUserComponent
+      },
+      {
+        path: 'tweets',
+        component: MyTweetsComponent
       }
     ]
   }
@@ -47,7 +52,8 @@ const routes: Routes = [
     ViewUserComponent,
     ViewUserFollowersComponent,
     ViewUserFollowingsComponent,
-    ViewUserTweetsComponent
+    ViewUserTweetsComponent,
+    MyTweetsComponent
   ],
   imports: [
     CommonModule,
