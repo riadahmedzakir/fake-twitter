@@ -19,16 +19,18 @@ export const routes: Route[] = [
     path: 'login',
     loadChildren: () => import('../login/login.module').then(m => m.LoginModule),
     canActivate: [NavigationGuard],
+    title: 'Login - Fake Twitter',
     data: {
-      authFailedRedirection: authFailedRedirection
+      authFailedRedirection: authFailedRedirection,
     }
   },
   {
     path: 'home',
     loadChildren: () => import('../home/home.module').then(m => m.HomeModule),
     canActivate: [NavigationGuard],
+    title: 'Feed - Fake Twitter',
     data: {
-      authFailedRedirection: authFailedRedirection
+      authFailedRedirection: authFailedRedirection,
     }
   },
   {

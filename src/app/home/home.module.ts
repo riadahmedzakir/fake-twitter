@@ -28,7 +28,8 @@ const routes: Routes = [
       },
       {
         path: 'explore',
-        component: ExploreUserComponent
+        component: ExploreUserComponent,
+        title: 'Explore - Fake Twitter'
       },
       {
         path: 'network',
@@ -36,11 +37,13 @@ const routes: Routes = [
       },
       {
         path: 'user/:id',
-        component: ViewUserComponent
+        component: ViewUserComponent,
+        title: 'User - Fake Twitter'
       },
       {
         path: 'tweets',
-        component: MyTweetsComponent
+        component: MyTweetsComponent,
+        title: 'My Tweets - Fake Twitter'
       }
     ]
   }

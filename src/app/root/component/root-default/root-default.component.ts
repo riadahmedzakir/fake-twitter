@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { LoginService } from 'src/app/login/services/login.service';
 import { environment } from './../../../../environments/environment';
+import { filter, map } from 'rxjs';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Component({
   selector: 'app-root-default',
@@ -12,12 +14,33 @@ import { environment } from './../../../../environments/environment';
 export class RootDefaultComponent implements OnInit {
   constructor(
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private utilityService: UtilityService
   ) { }
 
   setRequiedCookcies(): void {
     this.loginService.setCookie('client_id', "test_123");
     this.loginService.setCookie('client_secret', "test_123");
+  }
+
+  dynamicRouteTitleSetter(): void {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => {
+          const child: ActivatedRoute | null = this.route.firstChild;
+          let title = child && child.snapshot.data['title'];
+          if (title) {
+            return title;
+          }
+        })
+      )
+      .subscribe((title) => {
+        if (title) {
+          this.utilityService.changetitle(`${title} - Fake Twitter`);
+        }
+      });
   }
 
   ngOnInit(): void {

@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: NetworkContainerComponent,
+    title: 'My Network - Fake Twitter'
   }
 ];
 
