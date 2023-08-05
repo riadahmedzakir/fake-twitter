@@ -1,1 +1,61 @@
-<p>timeline works!</p>
+<div *ngIf="isLoading" class="virtualizer-viewport" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport"
+  (scrolledIndexChange)="scrollhandler($event)">
+  <div class="explore-items" *cdkVirtualFor="let item of timeline">
+    <div class="full-width timeline-header" [style]="{ backgroundColor: item.color }"></div>
+    <mat-card>
+      <mat-card-header>
+        <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <ngx-avatars [bgColor]="item.color" [name]="item.user.username" size="35"></ngx-avatars>
+            <h1 class="m-b-0 p-l-16 text-bold">{{item.user.username}}</h1>
+          </div>
+          <div class="m-b-16">
+            <p class="m-b-0">
+              {{item.published | date}}
+            </p>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider class="m-t-16"></mat-divider>
+        <p class="m-t-16 font-size-20">
+          {{item.content}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button color="warn">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <p class="m-0">33</p>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>settings_backup_restore</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>chat</mat-icon>
+        </button>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button>
+            <mat-icon>chat</mat-icon>
+          </button>
+          <p class="m-0">25</p>
+        </div>
+        <button mat-icon-button>
+          <mat-icon>send</mat-icon>
+        </button>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button>
+            <mat-icon>show_chart</mat-icon>
+          </button>
+          <p class="m-0">1156</p>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <div class="full-width timeline-footer" [style]="{ backgroundColor: item.color }"></div>
+  </div>
+</cdk-virtual-scroll-viewport>
