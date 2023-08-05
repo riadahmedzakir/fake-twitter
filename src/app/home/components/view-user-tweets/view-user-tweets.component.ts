@@ -30,7 +30,6 @@ export class ViewUserTweetsComponent implements OnInit {
   }
 
   getTweets(userId: number, page: number, size: number): void {
-    this.isLoading = true;
     this.exploreService.getTweetsByUserId(userId, page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.tweets = [...this.tweets, ...res.tweets];

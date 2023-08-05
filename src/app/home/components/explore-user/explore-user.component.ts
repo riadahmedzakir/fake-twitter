@@ -31,7 +31,6 @@ export class ExploreUserComponent implements OnInit {
   ) { }
 
   getUsers(page: number, size: number): void {
-    this.isLoading = true;
     this.exploreService.getExlporableUsers(page, size)
       .pipe(first())
       .subscribe(res => {
@@ -49,6 +48,7 @@ export class ExploreUserComponent implements OnInit {
   searchUsers(userName: string): void {
     this.exploreService.searchUser(userName).pipe(first()).subscribe(res => {
       this.users = res.search_results;
+      this.isLoading = false;
     });
   }
 
@@ -79,6 +79,8 @@ export class ExploreUserComponent implements OnInit {
 
     this.onModelChangeSubject.pipe(debounceTime(500)).subscribe(event => {
       this.search = event;
+      this.isLoading = true;
+
       if (this.search) {
         this.searchUsers(this.search);
       } else {

@@ -29,7 +29,6 @@ export class ViewUserFollowingsComponent implements OnInit {
   }
 
   getFollowings(userId: number, page: number, size: number): void {
-    this.isLoading = true;
     this.exploreService.getFollowingsByUserId(userId, page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.followings = [...this.followings, ...res.followings];

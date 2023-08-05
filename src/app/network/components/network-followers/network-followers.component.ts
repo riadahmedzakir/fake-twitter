@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NetworkService } from '../../services/network.service';
-import { first } from 'rxjs';
-import { LoginService } from 'src/app/login/services/login.service';
-import { IUser } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { IUser } from 'src/app/core/models/user.model';
+import { NetworkService } from '../../services/network.service';
 
 @Component({
   selector: 'app-network-followers',
@@ -18,7 +17,6 @@ export class NetworkFollowersComponent implements OnInit {
 
   constructor(
     private networkService: NetworkService,
-    private loginService: LoginService,
     private router: Router
   ) { }
 
@@ -31,8 +29,6 @@ export class NetworkFollowersComponent implements OnInit {
   }
 
   getFollowers(page: number, size: number): void {
-    const userString = this.loginService.getCookies('user_id');
-    const userId = parseInt(userString);
     this.networkService.getFollowers(page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.followers = [...this.followers, ...res.followers];

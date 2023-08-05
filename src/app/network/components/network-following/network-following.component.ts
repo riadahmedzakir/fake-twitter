@@ -30,7 +30,6 @@ export class NetworkFollowingComponent implements OnInit {
   }
 
   getFollowings(page: number, size: number): void {
-    this.isLoading = true;
     this.networkService.getFollowings(page, size).pipe(first()).subscribe(res => {
       if (res.count !== 0) {
         this.followings = [...this.followings, ...res.followings];
