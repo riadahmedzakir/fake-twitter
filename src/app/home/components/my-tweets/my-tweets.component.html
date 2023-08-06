@@ -22,7 +22,7 @@
       </mat-card-header>
       <mat-card-content>
         <mat-divider class="m-t-16"></mat-divider>
-        <p class="m-t-16 font-size-20">
+        <p class="m-t-16 font-size-20 text-break-all">
           {{item.content}}
         </p>
       </mat-card-content>
@@ -33,27 +33,24 @@
           </button>
           <p class="m-0">33</p>
         </div>
-        <button mat-icon-button>
-          <mat-icon>settings_backup_restore</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon>chat</mat-icon>
-        </button>
         <div fxLayout="row" fxLayoutAlign="start center">
           <button mat-icon-button>
             <mat-icon>chat</mat-icon>
           </button>
           <p class="m-0">25</p>
         </div>
-        <button mat-icon-button>
-          <mat-icon>send</mat-icon>
-        </button>
         <div fxLayout="row" fxLayoutAlign="start center">
           <button mat-icon-button>
             <mat-icon>show_chart</mat-icon>
           </button>
           <p class="m-0">1156</p>
         </div>
+        <button mat-icon-button>
+          <mat-icon>settings_backup_restore</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>send</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
     <div class="full-width timeline-footer" [style]="{ backgroundColor: item.color }"></div>

@@ -83,19 +83,19 @@ a {
 }
 
 .text-bold {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .text-italic {
-  font-style: italic;
+  font-style: italic !important;
 }
 
 .text-align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text-strike {
-  text-decoration: line-through;
+  text-decoration: line-through !important;
 }
 
 .text-ellipsis {
