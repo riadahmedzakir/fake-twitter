@@ -108,6 +108,14 @@ a {
   word-break: break-all;
 }
 
+.text-upppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
 .cur-pointer {
   cursor: pointer;
 }

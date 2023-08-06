@@ -4,8 +4,9 @@
     <mat-card>
       <mat-card-header>
         <div class="full-width">
-          <h1 class="m-b-0 text-bold">{{item.username}}</h1>
-          <div class="full-width m-b-16" fxLayout="row" fxLayoutAlign="space-between center">
+          <h1 class="m-b-0 text-bold text-capitalize">{{item.username}}</h1>
+          <div class="full-width m-b-16" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.lt-sm="column"
+            fxLayoutAlign.lt-sm="start start">
             <p class="m-b-0 font-size-16 opacity-80">@placeholder_tag_{{item.id}}</p>
             <p class="m-b-0">
               <span class="text-bold">Joined</span> : {{item.join_date | date}}

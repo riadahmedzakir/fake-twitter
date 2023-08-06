@@ -11,7 +11,7 @@
         <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="row" fxLayoutAlign="start center">
             <ngx-avatars [bgColor]="item.color" [name]="item.user.username" size="35"></ngx-avatars>
-            <h1 class="m-b-0 p-l-16 text-bold">{{item.user.username}}</h1>
+            <h1 class="m-b-0 p-l-16 text-bold text-capitalize">{{item.user.username}}</h1>
           </div>
           <p class="m-b-0">
             {{item.published | date}}
