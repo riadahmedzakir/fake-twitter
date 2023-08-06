@@ -1,5 +1,5 @@
 <mat-drawer-container class="container">
-  <mat-drawer class="user-content-container sidenav" #sidenav mode="side" opened fxHide fxShow.gt-md>
+  <mat-drawer class="user-content-container sidenav" #sidenav [mode]="mode" [opened]="!isSmallScreen">
     <div class="user-content" [matMenuTriggerFor]="menu">
       <div fxLayout="row" fxLayoutAlign="start center">
         <ngx-avatars name="Placeholder Name"></ngx-avatars>
@@ -34,3 +34,7 @@
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<button class="menu-button" mat-mini-fab color="primary" (click)="sidenav.toggle()" fxShow fxHide.gt-md>
+  <mat-icon>expand_content</mat-icon>
+</button>

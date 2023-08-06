@@ -32,8 +32,6 @@ export class LoginDefaultComponent {
     private snackbarService: SnackbarService
   ) { }
 
-
-
   login(): void {
     this.loginDisabled = true;
 
@@ -69,7 +67,6 @@ export class LoginDefaultComponent {
 
   openRegistrationModal(): void {
     this.dialog.open(RegistrationComponent, {
-      width: '35vw',
       data: {},
     });
   }
