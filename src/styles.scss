@@ -98,6 +98,16 @@ a {
   text-decoration: line-through;
 }
 
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-break-all {
+  word-break: break-all;
+}
+
 .cur-pointer {
   cursor: pointer;
 }

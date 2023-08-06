@@ -2,17 +2,19 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport" (scrolledIndexChange)="scrollhandler($event)">
+<cdk-virtual-scroll-viewport *ngIf="!isLoading" [itemSize]="30" class="virtualizer-viewport"
+  (scrolledIndexChange)="scrollhandler($event)">
   <div class="explore-items" *cdkVirtualFor="let item of followings">
 
     <mat-card>
       <mat-card-header>
         <div class="full-width">
           <h1 class="m-b-0 text-bold">{{item.username}}</h1>
-          <div class="full-width m-b-16" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="full-width m-b-16" ngClass.lt-sm="m-b-0" fxLayout="row" fxLayoutAlign="space-between center"
+            fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="start start">
             <p class="m-b-0 font-size-16 opacity-80">@placeholder_tag_{{item.id}}</p>
             <p class="m-b-0">
-              <span class="text-bold">Joined</span> : {{item.join_date}}
+              <span class="text-bold">Joined</span> : {{item.join_date | date}}
             </p>
           </div>
         </div>

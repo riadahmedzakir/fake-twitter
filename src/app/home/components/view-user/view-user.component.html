@@ -1,5 +1,5 @@
-<div class="view-user-container">
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+<div class="p-t-50 p-b-20 p-l-20 p-r-20" ngClass.lt-sm="p-l-20 p-r-20">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="start start">
     <div fxLayout="row" fxLayoutAlign="start center">
       <ngx-avatars [name]="user.username" size="80"></ngx-avatars>
       <div class="p-l-16">
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <button mat-button color="primary" (click)="follow()">Follow</button>
+    <button mat-button color="primary" (click)="follow()" ngClass.lt-sm="full-width m-t-16">Follow</button>
   </div>
 </div>
 
